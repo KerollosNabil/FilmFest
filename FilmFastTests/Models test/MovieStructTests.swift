@@ -24,4 +24,10 @@ class MovieStructTests: XCTestCase {
         XCTAssertNotNil(testMovie)
         XCTAssertEqual(testMovie.title, "koko")
     }
+    func testInit_movieWithTitleAndReleaseDate(){
+        let testMovie = Movie(title:"koko", releaseDate:"1998")
+        
+        XCTAssertNotNil(testMovie)
+        XCTAssertEqual(testMovie.releaseDate, "1998")
+    }
 }

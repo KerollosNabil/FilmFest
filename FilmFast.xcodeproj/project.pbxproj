@@ -79,13 +79,13 @@
 		0415FD1F25856F7200E7D027 /* FilmFast */ = {
 			isa = PBXGroup;
 			children = (
+				0415FD5425866FE200E7D027 /* controllers */,
+				0415FD532586609F00E7D027 /* Models */,
 				0415FD2025856F7200E7D027 /* AppDelegate.swift */,
 				0415FD2225856F7200E7D027 /* SceneDelegate.swift */,
-				0415FD2425856F7200E7D027 /* ViewController.swift */,
 				0415FD2925856F7600E7D027 /* Assets.xcassets */,
 				0415FD2B25856F7600E7D027 /* LaunchScreen.storyboard */,
 				0415FD2E25856F7600E7D027 /* Info.plist */,
-				0415FD4F2586577600E7D027 /* Movie.swift */,
 			);
 			path = FilmFast;
 			sourceTree = "<group>";
@@ -93,10 +93,42 @@
 		0415FD3A25856F8700E7D027 /* FilmFastTests */ = {
 			isa = PBXGroup;
 			children = (
+				0415FD562586700500E7D027 /* controller test */,
+				0415FD5525866FF600E7D027 /* Models test */,
 				0415FD3D25856F8800E7D027 /* Info.plist */,
-				0415FD4B2585859100E7D027 /* MovieStructTests.swift */,
 			);
 			path = FilmFastTests;
+			sourceTree = "<group>";
+		};
+		0415FD532586609F00E7D027 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0415FD4F2586577600E7D027 /* Movie.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0415FD5425866FE200E7D027 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0415FD2425856F7200E7D027 /* ViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		0415FD5525866FF600E7D027 /* Models test */ = {
+			isa = PBXGroup;
+			children = (
+				0415FD4B2585859100E7D027 /* MovieStructTests.swift */,
+			);
+			path = "Models test";
+			sourceTree = "<group>";
+		};
+		0415FD562586700500E7D027 /* controller test */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "controller test";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

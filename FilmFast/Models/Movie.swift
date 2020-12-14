@@ -9,4 +9,5 @@ import Foundation
 
 struct Movie {
     let title:String
+    var releaseDate:String? = nil
 }
