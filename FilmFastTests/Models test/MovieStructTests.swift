@@ -28,6 +28,6 @@ class MovieStructTests: XCTestCase {
         let testMovie = Movie(title:"koko", releaseDate:"1998")
         
         XCTAssertNotNil(testMovie)
-        XCTAssertEqual(testMovie.releaseDate, "1998")
+        XCTAssertEqual(testMovie.releaseDate, "19983")
     }
 }
