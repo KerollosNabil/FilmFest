@@ -15,6 +15,9 @@ class MovieManager {
     private var moviesSeenArray = [Movie]()
     
     func addMovie(movie:Movie) {
+        if moviesToSeeArray.contains(movie){
+            return
+        }
         moviesToSeeArray.append(movie)
     }
     func movieAtIndex(index: Int) -> Movie? {

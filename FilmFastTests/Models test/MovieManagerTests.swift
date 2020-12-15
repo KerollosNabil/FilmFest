@@ -122,9 +122,14 @@ class MovieManagerTests: XCTestCase {
         sut.addMovie(movie: scifiMovie)
         sut.addMovie(movie: scifiMovie)
         
-        XCTAssertNotEqual(sut.moviesToSee, 1)
+        XCTAssertEqual(sut.moviesToSee, 1)
         
+        let movie1 = Movie(title: "action", releaseDate: "1998")
+        let movie12 = Movie(title: "action", releaseDate: "1999")
+        sut.addMovie(movie: movie1)
+        sut.addMovie(movie: movie12)
         
+        XCTAssertEqual(sut.moviesToSee, 3)
     }
 }
 
