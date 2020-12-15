@@ -11,3 +11,6 @@ struct Movie {
     let title:String
     var releaseDate:String? = nil
 }
+
+extension Movie: Equatable{
+}
