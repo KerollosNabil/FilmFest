@@ -27,7 +27,7 @@ class MovieCellTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testCell_config_shouldSetThelabelsToMovieData(){
+    func testCell_config_shouldSetThelabelsToMovieData() {
         let cell = MovieCell(style: .subtitle, reuseIdentifier: "MovieCell") 
         
         cell.setupMovieData(movie: Movie(title: "Indie comedy", releaseDate: "2018"))
@@ -35,7 +35,7 @@ class MovieCellTests: XCTestCase {
         XCTAssertEqual(cell.detailTextLabel?.text, "2018")
     }
 
-    func testCell_section_SouldCheckOffCelectedMovie(){
+    func testCell_section_SouldCheckOffCelectedMovie() {
         libraryControler.movieManager?.addMovie(movie: scifiMovie)
         libraryControler.movieManager?.addMovie(movie: actionMovie)
         libraryControler.libraryTableView.reloadData()

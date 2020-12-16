@@ -9,8 +9,8 @@ import UIKit
 
 class MovieCell: UITableViewCell {
 
-    var movieData:Movie?{
-        didSet{
+    var movieData: Movie? {
+        didSet {
             self.textLabel?.text = movieData?.title
             self.detailTextLabel?.text = movieData?.releaseDate
         }
@@ -26,7 +26,7 @@ class MovieCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func setupMovieData(movie:Movie?){
+    func setupMovieData(movie: Movie?) {
         movieData = movie
     }
 

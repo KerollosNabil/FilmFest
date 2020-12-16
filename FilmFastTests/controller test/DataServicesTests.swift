@@ -10,8 +10,8 @@ import XCTest
 
 class DataServicesTests: XCTestCase {
 
-    var sut:LibraryVC!
-    var mock:TableViewMock!
+    var sut: LibraryVC!
+    var mock: TableViewMock!
     let scifiMovie = Movie(title: "Sci-Fi")
     let arthouseMovie = Movie(title: "Arthouse Drama")
     let actionMovie = Movie(title: "Action/Adventure")
@@ -28,11 +28,11 @@ class DataServicesTests: XCTestCase {
         mock = nil
     }
 
-    func testTableViewSection_count_returnTwo(){
+    func testTableViewSection_count_returnTwo() {
         XCTAssertEqual(sut.libraryTableView.numberOfSections, 2)
     }
     
-    func testTableViewSection_count_sectionOne_returnMoviesToSeeCount(){
+    func testTableViewSection_count_sectionOne_returnMoviesToSeeCount() {
         sut.movieManager?.addMovie(movie: scifiMovie)
         sut.movieManager?.addMovie(movie: actionMovie)
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 0), 5)
@@ -44,13 +44,12 @@ class DataServicesTests: XCTestCase {
 
     }
     
-    func testTableViewSection_count_sectionTwo_returnMoviesSeenCount(){
+    func testTableViewSection_count_sectionTwo_returnMoviesSeenCount() {
         sut.movieManager?.addMovie(movie: scifiMovie)
         sut.movieManager?.addMovie(movie: actionMovie)
         
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 0), 5)
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 1), 0)
-        
         
         sut.movieManager?.addMovie(movie: arthouseMovie)
         sut.libraryTableView.reloadData()
@@ -58,13 +57,11 @@ class DataServicesTests: XCTestCase {
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 0), 3)
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 1), 0)
         
-        
         sut.movieManager?.checkOffMovieAt(index: 0)
         sut.libraryTableView.reloadData()
         
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 0), 2)
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 1), 1)
-        
         
         sut.movieManager?.checkOffMovieAt(index: 0)
         sut.libraryTableView.reloadData()
@@ -74,7 +71,7 @@ class DataServicesTests: XCTestCase {
 
     }
     
-    func testCell_shouldDequeueCell(){
+    func testCell_shouldDequeueCell() {
         
         sut.movieManager?.addMovie(movie: scifiMovie)
         mock.reloadData()
@@ -84,28 +81,28 @@ class DataServicesTests: XCTestCase {
         XCTAssertTrue(mock.dequeueCellsProberly)
     }
     
-    func testCell_sectionOneConfig_shouldSetCellData(){
+    func testCell_sectionOneConfig_shouldSetCellData() {
        
         sut.movieManager?.addMovie(movie: scifiMovie)
         mock.reloadData()
         
-        let cell = mock.cellForRow(at: IndexPath(row: 0, section: 0)) as! MovieCell
+        let cell = mock.cellForRow(at: IndexPath(row: 0, section: 0)) as? MovieCell
         
-        XCTAssertEqual(cell.movieData, scifiMovie)
+        XCTAssertEqual(cell?.movieData, scifiMovie)
     }
-    func testCell_sectionTowConfig_shouldSetCellData(){
+    func testCell_sectionTowConfig_shouldSetCellData() {
        
         sut.movieManager?.addMovie(movie: scifiMovie)
         sut.movieManager?.addMovie(movie: actionMovie)
         sut.movieManager?.checkOffMovieAt(index: 1)
         mock.reloadData()
         
-        let cell = mock.cellForRow(at: IndexPath(row: 0, section: 1)) as! MovieCell
+        let cell = mock.cellForRow(at: IndexPath(row: 0, section: 1)) as? MovieCell
         
-        XCTAssertEqual(cell.movieData, actionMovie)
+        XCTAssertEqual(cell?.movieData, actionMovie)
     }
     
-    func testTableView_shouldHaveCorrectTitles(){
+    func testTableView_shouldHaveCorrectTitles() {
         let sectionOneTitle = sut.libraryTableView.dataSource?.tableView?(sut.libraryTableView, titleForHeaderInSection: 0)
         let sectionTowTitle = sut.libraryTableView.dataSource?.tableView?(sut.libraryTableView, titleForHeaderInSection: 1)
         
@@ -117,7 +114,7 @@ class DataServicesTests: XCTestCase {
 class TableViewMock: UITableView {
     var dequeueCellsProberly = false
     
-    class func initMockTableView(libraray: LibraryVC) -> TableViewMock{
+    class func initMockTableView(libraray: LibraryVC) -> TableViewMock {
         let mock = TableViewMock(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         mock.dataSource = libraray
         mock.delegate = libraray

@@ -7,8 +7,8 @@
 
 import UIKit
 
-enum LibrarySections:Int {
-    case MoviesToSee, MoviesSeen
+enum LibrarySections: Int {
+    case moviesToSee, moviesSeen
 }
 
 class LibraryVC: UIViewController {
@@ -27,7 +27,7 @@ class LibraryVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    private func addDummyData(){
+    private func addDummyData() {
         movieManager = MovieManager()
         movieManager?.addMovie(movie: Movie(title: "Action", releaseDate: "1999"))
         movieManager?.addMovie(movie: Movie(title: "Horror", releaseDate: "1989"))
@@ -36,17 +36,18 @@ class LibraryVC: UIViewController {
         movieManager?.addMovie(movie: Movie(title: "Fu Flick"))
         libraryTableView.reloadData()
     }
-    private func configureUI(){
+    private func configureUI() {
         configureTitleLabel()
         configureFilmsTableView()
         
     }
-    private func configureTitleLabel(){
+    private func configureTitleLabel() {
         view.addSubview(titleLabel)
         titleLabel.text = "Film Fast"
         titleLabel.textColor = .white
-        let fontDescreptor = UIFontDescriptor(name: "Cochin", size: 37).withSymbolicTraits(UIFontDescriptor.SymbolicTraits([.traitItalic, .traitBold]))
-        titleLabel.font = UIFont(descriptor: fontDescreptor!, size: 37)
+        let fontDescreptor = UIFontDescriptor(name: "Cochin", size: 37)
+        fontDescreptor.withSymbolicTraits(UIFontDescriptor.SymbolicTraits([.traitItalic, .traitBold]))
+        titleLabel.font = UIFont(descriptor: fontDescreptor, size: 37)
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -56,7 +57,7 @@ class LibraryVC: UIViewController {
             titleLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-    private func configureFilmsTableView(){
+    private func configureFilmsTableView() {
         view.addSubview(libraryTableView)
         libraryTableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -74,27 +75,28 @@ class LibraryVC: UIViewController {
     }
 }
 
-extension LibraryVC: UITableViewDataSource, UITableViewDelegate{
+extension LibraryVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let movieManager = movieManager else {return 0}
-        guard let librarySection = LibrarySections(rawValue:section) else {fatalError()}
+        guard let librarySection = LibrarySections(rawValue: section) else {fatalError()}
         switch librarySection {
-        case .MoviesSeen:
+        case .moviesSeen:
             return movieManager.moviesSeen
-        case .MoviesToSee:
+        case .moviesToSee:
             return movieManager.moviesToSee
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let movieManager = movieManager, let librarySection = LibrarySections(rawValue:indexPath.section) else {fatalError()}
-        let cell = tableView.dequeueReusableCell(withIdentifier:  "MovieCell", for: indexPath) as! MovieCell
+        guard let movieManager = movieManager, let librarySection = LibrarySections(rawValue: indexPath.section) else {fatalError()}
+        
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieCell) ?? MovieCell()
         
         switch librarySection {
-        case .MoviesSeen:
+        case .moviesSeen:
             cell.setupMovieData(movie: movieManager.checkedOffMovieAt(index: indexPath.row))
-        case .MoviesToSee:
+        case .moviesToSee:
             cell.setupMovieData(movie: movieManager.movieAtIndex(index: indexPath.row))
         }
         return cell
@@ -105,19 +107,18 @@ extension LibraryVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let movieManager = movieManager, let librarySection = LibrarySections(rawValue:indexPath.section) else {fatalError()}
-        if librarySection == .MoviesToSee {
+        guard let movieManager = movieManager, let librarySection = LibrarySections(rawValue: indexPath.section) else {fatalError()}
+        if librarySection == .moviesToSee {
             movieManager.checkOffMovieAt(index: indexPath.row)
             tableView.reloadData()
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let librarySection = LibrarySections(rawValue:section) else {fatalError()}
+        guard let librarySection = LibrarySections(rawValue: section) else {fatalError()}
         
-        let sectionTitle = (librarySection == .MoviesToSee) ? "Movies To See" : "Movies Seen"
+        let sectionTitle = (librarySection == .moviesToSee) ? "Movies To See" : "Movies Seen"
         
         return sectionTitle
     }
 }
-

@@ -8,14 +8,14 @@
 import Foundation
 
 class MovieManager {
-    var moviesToSee:Int {return moviesToSeeArray.count}
-    var moviesSeen:Int {return moviesSeenArray.count}
+    var moviesToSee: Int {return moviesToSeeArray.count}
+    var moviesSeen: Int {return moviesSeenArray.count}
     
     private var moviesToSeeArray = [Movie]()
     private var moviesSeenArray = [Movie]()
     
-    func addMovie(movie:Movie) {
-        if moviesToSeeArray.contains(movie){
+    func addMovie(movie: Movie) {
+        if moviesToSeeArray.contains(movie) {
             return
         }
         moviesToSeeArray.append(movie)
@@ -26,21 +26,21 @@ class MovieManager {
         }
         return moviesToSeeArray[index]
     }
-    func checkOffMovieAt(index: Int){
-        guard index < moviesToSee , let currentMovie = movieAtIndex(index: index) else {
+    func checkOffMovieAt(index: Int) {
+        guard index < moviesToSee, let currentMovie = movieAtIndex(index: index) else {
             return
         }
         
         moviesSeenArray.append(currentMovie)
         moviesToSeeArray.remove(at: index)
     }
-    func checkedOffMovieAt(index: Int) -> Movie?{
+    func checkedOffMovieAt(index: Int) -> Movie? {
         guard index < moviesSeen else {
             return nil
         }
         return moviesSeenArray[index]
     }
-    func clearArrays(){
+    func clearArrays() {
         moviesToSeeArray.removeAll()
         moviesSeenArray.removeAll()
     }

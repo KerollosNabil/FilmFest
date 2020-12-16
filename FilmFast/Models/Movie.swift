@@ -8,9 +8,9 @@
 import Foundation
 
 struct Movie {
-    let title:String
-    var releaseDate:String? = nil
+    let title: String
+    var releaseDate: String?
 }
 
-extension Movie: Equatable{
+extension Movie: Equatable {
 }

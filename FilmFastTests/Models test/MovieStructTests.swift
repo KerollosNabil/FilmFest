@@ -18,14 +18,14 @@ class MovieStructTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testInit_movieWithTitle(){
-        let testMovie = Movie(title:"koko")
+    func testInit_movieWithTitle() {
+        let testMovie = Movie(title: "koko")
         
         XCTAssertNotNil(testMovie)
         XCTAssertEqual(testMovie.title, "koko")
     }
-    func testInit_movieWithTitleAndReleaseDate(){
-        let testMovie = Movie(title:"koko", releaseDate:"1998")
+    func testInit_movieWithTitleAndReleaseDate() {
+        let testMovie = Movie(title: "koko", releaseDate: "1998")
         
         XCTAssertNotNil(testMovie)
         XCTAssertEqual(testMovie.releaseDate, "1998")

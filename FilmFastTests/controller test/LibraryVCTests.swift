@@ -8,7 +8,6 @@
 import XCTest
 @testable import FilmFast
 
-
 class LibraryVCTests: XCTestCase {
     
     var sut: LibraryVC!
@@ -23,22 +22,20 @@ class LibraryVCTests: XCTestCase {
     }
 
     // MARK: nil checks
-    func testLibraryVC_tableViewShouldNotEqualNil(){
+    func testLibraryVC_tableViewShouldNotEqualNil() {
         XCTAssertNotNil(sut.libraryTableView)
     }
     // MARK: data source checks
     
-    func testDataSource_setTableViewDataSource(){
+    func testDataSource_setTableViewDataSource() {
         XCTAssertNotNil(sut.libraryTableView.dataSource)
         XCTAssertTrue(sut.libraryTableView.dataSource is LibraryVC)
     }
     
     // MARK: delegate checks
-    func testDelegate_setTableViewDelegate(){
+    func testDelegate_setTableViewDelegate() {
         XCTAssertNotNil(sut.libraryTableView.delegate)
         XCTAssertTrue(sut.libraryTableView.delegate is LibraryVC)
     }
-    
-    
 
 }
