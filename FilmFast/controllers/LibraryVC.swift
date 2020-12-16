@@ -97,7 +97,6 @@ extension LibraryVC: UITableViewDataSource, UITableViewDelegate{
         case .MoviesToSee:
             cell.setupMovieData(movie: movieManager.movieAtIndex(index: indexPath.row))
         }
-        print(cell is MovieCell)
         return cell
     }
     
