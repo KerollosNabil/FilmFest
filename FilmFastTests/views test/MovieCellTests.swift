@@ -42,10 +42,10 @@ class MovieCellTests: XCTestCase {
         
         libraryControler.libraryTableView.delegate?.tableView?(libraryControler.libraryTableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         
-        XCTAssertEqual(libraryControler.movieManager?.moviesToSee, 1)
+        XCTAssertEqual(libraryControler.movieManager?.moviesToSee, 6)
         XCTAssertEqual(libraryControler.movieManager?.moviesSeen, 1)
         
-        XCTAssertEqual(libraryControler.libraryTableView.numberOfRows(inSection: 0), 1)
+        XCTAssertEqual(libraryControler.libraryTableView.numberOfRows(inSection: 0), 6)
         XCTAssertEqual(libraryControler.libraryTableView.numberOfRows(inSection: 1), 1)
 
     }

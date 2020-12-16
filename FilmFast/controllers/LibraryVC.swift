@@ -19,9 +19,22 @@ class LibraryVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .red
         view.backgroundColor = .systemBlue
         configureUI()
+        addDummyData()
+
         // Do any additional setup after loading the view.
+    }
+    
+    private func addDummyData(){
+        movieManager = MovieManager()
+        movieManager?.addMovie(movie: Movie(title: "Action", releaseDate: "1999"))
+        movieManager?.addMovie(movie: Movie(title: "Horror", releaseDate: "1989"))
+        movieManager?.addMovie(movie: Movie(title: "Crime Thriller", releaseDate: "1979"))
+        movieManager?.addMovie(movie: Movie(title: "Indie Comedy"))
+        movieManager?.addMovie(movie: Movie(title: "Fu Flick"))
+        libraryTableView.reloadData()
     }
     private func configureUI(){
         configureTitleLabel()
@@ -74,6 +87,7 @@ extension LibraryVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let movieManager = movieManager, let librarySection = LibrarySections(rawValue:indexPath.section) else {fatalError()}
         let cell = tableView.dequeueReusableCell(withIdentifier:  "MovieCell", for: indexPath) as! MovieCell
         
@@ -83,7 +97,7 @@ extension LibraryVC: UITableViewDataSource, UITableViewDelegate{
         case .MoviesToSee:
             cell.setupMovieData(movie: movieManager.movieAtIndex(index: indexPath.row))
         }
-        
+        print(cell is MovieCell)
         return cell
     }
     
@@ -99,5 +113,12 @@ extension LibraryVC: UITableViewDataSource, UITableViewDelegate{
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let librarySection = LibrarySections(rawValue:section) else {fatalError()}
+        
+        let sectionTitle = (librarySection == .MoviesToSee) ? "Movies To See" : "Movies Seen"
+        
+        return sectionTitle
+    }
 }
 

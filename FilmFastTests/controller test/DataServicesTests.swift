@@ -19,6 +19,7 @@ class DataServicesTests: XCTestCase {
         sut = LibraryVC()
         _ = sut.view
         sut.movieManager = MovieManager()
+//        sut.libraryTableView.reloadData()
         mock = TableViewMock.initMockTableView(libraray: sut)
     }
 
@@ -34,8 +35,7 @@ class DataServicesTests: XCTestCase {
     func testTableViewSection_count_sectionOne_returnMoviesToSeeCount(){
         sut.movieManager?.addMovie(movie: scifiMovie)
         sut.movieManager?.addMovie(movie: actionMovie)
-        
-        XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 0), 2)
+        XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 0), 5)
         
         sut.movieManager?.addMovie(movie: arthouseMovie)
         sut.libraryTableView.reloadData()
@@ -48,7 +48,7 @@ class DataServicesTests: XCTestCase {
         sut.movieManager?.addMovie(movie: scifiMovie)
         sut.movieManager?.addMovie(movie: actionMovie)
         
-        XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 0), 2)
+        XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 0), 5)
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 1), 0)
         
         
@@ -72,14 +72,6 @@ class DataServicesTests: XCTestCase {
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 0), 1)
         XCTAssertEqual(sut.libraryTableView.numberOfRows(inSection: 1), 2)
 
-    }
-    
-    func testCell_rowAtIndex_returnsMovieCell(){
-        sut.movieManager?.addMovie(movie: scifiMovie)
-        sut.libraryTableView.reloadData()
-        
-        let cellQueried = sut.libraryTableView.cellForRow(at: IndexPath(row: 0, section: 0))
-        XCTAssertTrue(cellQueried is MovieCell)
     }
     
     func testCell_shouldDequeueCell(){
@@ -113,7 +105,13 @@ class DataServicesTests: XCTestCase {
         XCTAssertEqual(cell.movieData, actionMovie)
     }
     
-
+    func testTableView_shouldHaveCorrectTitles(){
+        let sectionOneTitle = sut.libraryTableView.dataSource?.tableView?(sut.libraryTableView, titleForHeaderInSection: 0)
+        let sectionTowTitle = sut.libraryTableView.dataSource?.tableView?(sut.libraryTableView, titleForHeaderInSection: 1)
+        
+        XCTAssertEqual(sectionOneTitle, "Movies To See")
+        XCTAssertEqual(sectionTowTitle, "Movies Seen")
+    }
 }
 
 class TableViewMock: UITableView {
