@@ -29,7 +29,7 @@ class DataServicesTests: XCTestCase {
     }
 
     func testTableViewSection_count_returnTwo() {
-        XCTAssertEqual(sut.libraryTableView.numberOfSections, 2)
+        XCTAssertEqual(sut.libraryTableView.numberOfSections, 3)
     }
     
     func testTableViewSection_count_sectionOne_returnMoviesToSeeCount() {
