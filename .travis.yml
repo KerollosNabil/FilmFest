@@ -5,3 +5,10 @@ xcode_project: FilmFast.xcodeproj
 xcode_scheme: CI
 xcode_destination: platform=iOS Simulator,OS=14.2,name=iPhone 12 Pro Max
 xcode_destination: platform=iOS Simulator,OS=14.2,name=iPhone 8
+jobs:
+  include:
+    # ...
+    - name: Run Validations (SwiftLint)
+      osx_image: xcode11
+      install: brew install swiftlint
+      script: swiftlint autocorrect && swiftlint
