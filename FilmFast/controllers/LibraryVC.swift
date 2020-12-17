@@ -47,7 +47,7 @@ class LibraryVC: UIViewController {
         titleLabel.textColor = .white
         let fontDescreptor = UIFontDescriptor(name: "Cochin", size: 37)
         fontDescreptor.withSymbolicTraits(UIFontDescriptor.SymbolicTraits([.traitItalic, .traitBold]))
-        titleLabel.font = UIFont(descriptor: fontDescreptor, size: 37)
+        titleLabel.font = UIFont(descriptor: fontDescreptor!, size: 37)
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
