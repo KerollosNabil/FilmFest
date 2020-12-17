@@ -28,7 +28,7 @@ class LibraryVCTests: XCTestCase {
     // MARK: data source checks
     
     func testDataSource_setTableViewDataSource() {
-        XCTAssertNotNil(sut.libraryTableView.dataSource)
+        XCTAssertNotNil(sut.libraryTableView.dataSource!)
         XCTAssertTrue(sut.libraryTableView.dataSource is LibraryVC)
     }
     

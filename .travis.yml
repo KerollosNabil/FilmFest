@@ -2,11 +2,7 @@ os: osx
 jobs:
   include:
     # ...
-    - name: Run Validations (SwiftLint)
-      osx_image: xcode12.2
-      install: brew install swiftlint
-      script: swiftlint autocorrect && swiftlint
-      
+    
     - name: Buid and Run the Tests on iPthone 12 pro max
       osx_image: xcode12.2
       language: swift
